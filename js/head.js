@@ -4555,18 +4555,30 @@ with(document.calcForm){
 		str += '<TR><TD id="EN820"></TD></TR><TR><TD id="EN821"></TD></TR>';
 		str += '<TR><TD id="EN822"></TD></TR><TR><TD id="EN823"></TD></TR>';
 		str += '<TR><TD id="EN824"></TD></TR><TR><TD id="EN825"></TD></TR>';
-		str += '<TR><TD colspan="2"><Font size=2 color=black><B>Other Food:</B></Font></TD></TR>';
-		str += '<TR><TD id="EN816"></TD></TR>';
-		str += '<TR><TD id="EN826"></TD><TD id="EN827"></TD></TR>';
 		str += '<TR><TD colspan="2"><Font size=2 color=black><B>BG Food</B></Font></TD></TR>';
 		str += '<TR><TD id="EN834"></TD><TD id="EN835"></TD></TR>';
 		str += '<TR><TD id="EN836"></TD><TD id="EN837"></TD></TR>';
+		str += '<TR><TD colspan="2"><Font size=2 color=black><B>Eclage Food</B></Font></TD></TR>';
+		str += '<TR><TD colspan="2" id="EN842"></TD></TR>';
+		str += '<TR><TD colspan="2"><Font size=2 color=black><B>Other Food:</B></Font></TD></TR>';
+		str += '<TR><TD id="EN816"></TD></TR>';
+		str += '<TR><TD id="EN826"></TD><TD id="EN827"></TD></TR>';
 		str += '<TR><TD colspan="2"><Font size=2 color=black><B>Debuffs</B></Font></TD></TR>';
 		str += '<TR><TD id="EN830"></TD><TD id="EN831"></TD></TR>';
 		str += '<TR><TD id="EN832"></TD><TD id="EN833"></TD></TR></table>';
 		myInnerHtml("ID_ETC",str,0);
 		A8_SKILLSW.checked = 1;
 		myInnerHtml("EN800",'<select name="A8_Skill0" onChange="Click_A8(1)"></select>',0);
+
+		/*
+			Added Eclage Food with a drop down list for selection. Velaryon#8787 4-4-2020
+		*/
+		myInnerHtml("EN842",'<select name="eclage_food_list" onChange="Click_A8(1)"></select>',0);
+		eclage_food_list.options[0] = new Option("-",0,true,true);
+		eclage_food_list.options[1] = new Option("Peony Mommy",1);
+		eclage_food_list.options[2] = new Option("Snow Flip",2);
+		eclage_food_list.options[3] = new Option("Slapping Herb",3);
+		eclage_food_list.options[4] = new Option("Yggdrasil Dust",4);
 
 		var PET_OBJ_copy= new Array();
 		PET_OBJ_copy = PET_OBJ_copy.concat(PET_OBJ);
