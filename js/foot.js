@@ -837,123 +837,10 @@ function StAllCalc()
 		n_tok[94] += 10;
 	}
 
-//[TalonRO Custom 2018-07-25 - Brave Gladiator Blade + 5% MATK for Rogue/Stalker or Crusader/Paladin] [Amor]
-if(EquipNumSearch(900)){
-		if(n_A_JobSearch2() == 14 || n_A_JobSearch2() == 13) {
-			n_tok[89] += 5;
-		}
-}
-//[TalonRO Custom 2018-07-26 - Valorous Assassin Damascus + 15% MATK for Rogue/Stalker or Ninja] [Amor]
-if(EquipNumSearch(898)){
-		if(n_A_JobSearch2() == 14 || n_A_JOB == 44) {
-			n_tok[89] += 15;
-		}
-}
-//[TalonRO Custom 2018-07-29 - Glorious Staff of Recovery + 15% MATK for Priest/HP] [Amor]
-if(EquipNumSearch(1085)){
-		if(n_A_JobSearch2() == 9) {
-			n_tok[89] += 15;
-		}
-}
-
-/*
-	Valorous Battlefield Morning Star (damage)
-	[Refine level 8-10]
-	ATK + 20
-*/
-if(EquipNumSearch(907) && n_A_Weapon_ATKplus >= 8) {
-	n_tok[17] += 20;
-}
-/*
-	Brave Battlefield Morning Star (damage)
-	[Refine level 8-10]
-	[Alchemist Class]
-	ATK + 30
-*/
-if(EquipNumSearch(908) && n_A_Weapon_ATKplus >= 8 && n_A_JobSearch2() == 19) {
-	n_tok[17] += 30;
-}
-/*
-	Glorious Revolver (damage)
-	[Refine level 8-10]
-	ATK + 25
-*/
-if(EquipNumSearch(1099) && n_A_Weapon_ATKplus >= 8) {
-	n_tok[17] += 25;
-}
-
-/* 
-	Eclage Foods 4-4-2020 Velaryon#8787
-	Try catch is needed to prevent undefined error for eclage_food_list
-	This is because the value is not defined until addtional effects is checked
-*/
-try{ 
-	//Peony Mommy [Fire]
-	if(eclage_food_list.value == 1){ 
-		n_tok[10] += 10;
-	}
-	//Snow Flip [Water]
-	if(eclage_food_list.value == 2){
-		n_tok[10] += 20;
-	}
-	//Slapping Herb [Earth]
-	if(eclage_food_list.value == 3){
-		n_tok[10] += 30;
-	}
-	//Yggdrasil Dust [Wind]
-	if(eclage_food_list.value == 4){
-		n_tok[10] += 40;
-	}
-} catch(err){
-	//console.log("error msg = " + err);
-}
-/*
-Player Stats - n_tok[]
-n_tok[13] = Max HP
-n_tok[14] = Max SP
-n_tok[15] = Max %HP
-n_tok[16] = Max %SP
-n_tok[17] = ATK
-n_tok[18] = DEF
-n_tok[19] = MDEF
-*/
-//Jejeling CARD
-//For every 10 Base Vit, HP + 200
-if(CardNumSearch(561)){
-	n_tok[13] += 200*Math.floor(SU_VIT/10);
-}
-
-	w=n_tok[17];
-
-	if(SU_STR >= 80 && CardNumSearch(267))
-		w += 20;
-	if(SU_STR >= 95 && EquipNumSearch(621))
-		w += 340;
-	if(SU_STR >= 44 && EquipNumSearch(625))
-		w += 44;
-	if(SU_AGI >= 90 && EquipNumSearch(442))
-		w += 10 * EquipNumSearch(442);
-	if(SU_STR >= 95 && EquipNumSearch(1160))
-		w += 20;
-	if(SU_LUK >= 90 && EquipNumSearch(1164))
-		w += 20;
-	if(CardNumSearch(492))
-		w += Math.floor(n_A_JobLV /5) * CardNumSearch(492); //custom TalonRO Ifrit Card +1atk every 5 Joblv
-	if(CardNumSearch(528)) // Gold Scaraba - ATK + JobLV/5
-		w += Math.floor(n_A_JobLV /5) * CardNumSearch(528);
-	// Imperial Spear#1460 [Every 2 Refine Levels] ATK + 2
-	if(EquipNumSearch(1460)) {
-		w += 2 * Math.floor(n_A_Weapon_ATKplus / 2)
-		
-		if(SkillSearch(69)) // [Every [Spear Mastery] Level] ATK + 2
-			w += 2 * SkillSearch(69);
-	}
-	//[Custom TalonRO 2018-06-25 - Malangdo Enchantment for Fighting Spirit - ATK] [NattWara]
-	// Actual damage part.
-		for(i=0; i < tRO_MalangdoEnchantment.length; i++) {
-			var vME = tRO_MalangdoEnchantment[i];
-			if(vME >= 1781 && vME <= 1788) {
-				w += (4 + (2 * (parseInt(vME.substr(-1)) - 1)));
+	//[TalonRO Custom 2018-07-25 - Brave Gladiator Blade + 5% MATK for Rogue/Stalker or Crusader/Paladin] [Amor]
+	if(EquipNumSearch(900)){
+			if(n_A_JobSearch2() == 14 || n_A_JobSearch2() == 13) {
+				n_tok[89] += 5;
 			}
 	}
 	//[TalonRO Custom 2018-07-26 - Valorous Assassin Damascus + 15% MATK for Rogue/Stalker or Ninja] [Amor]
@@ -1014,6 +901,32 @@ if(CardNumSearch(561)){
 
 		if (n_A_HEAD_DEF_PLUS > 7)
 			n_tok[17] += 6;
+	}
+	
+	/* 
+	Eclage Foods 4-4-2020 Velaryon#8787
+	Try catch is needed to prevent undefined error for eclage_food_list
+	This is because the value is not defined until addtional effects is checked
+	*/
+	try{ 
+		//Peony Mommy [Fire]
+		if(eclage_food_list.value == 1){ 
+			n_tok[10] += 10;
+		}
+		//Snow Flip [Water]
+		if(eclage_food_list.value == 2){
+			n_tok[10] += 20;
+		}
+		//Slapping Herb [Earth]
+		if(eclage_food_list.value == 3){
+			n_tok[10] += 30;
+		}
+		//Yggdrasil Dust [Wind]
+		if(eclage_food_list.value == 4){
+			n_tok[10] += 40;
+		}
+	} catch(err){
+		//console.log("error msg = " + err);
 	}
 
 	// Doom Slayer#621 - [If Base STR >= 95] ATK + 340
